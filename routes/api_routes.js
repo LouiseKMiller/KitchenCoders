@@ -54,6 +54,7 @@ router.get('/ingredient', function (req, res) {
 	});
 });
 
+
 // POST REQUEST TO URI  - /INGREDIENT/ADD
 // receives new ingredient entered by user
 // and updates database with the new ingredient
@@ -110,6 +111,7 @@ router.get('/recipe', function (req, res) {
 });
 
 
+
 // GET REQUEST TO URI - /findRecipe  
 // user presented with page where she can
 // query database for matching recipes
@@ -161,6 +163,7 @@ router.get('/addRecipe', function (req, res) {
 // then call getRecipes to load database with results
 //
 //
+
 router.get('/admin', function (req, res) {
 		res.render('admin');
 	});
