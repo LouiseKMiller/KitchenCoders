@@ -135,6 +135,20 @@ router.get('/findRecipe', function (req, res) {
 	res.render('findRecipe');
 });
 
+router.post('/findRecipe', function (req, res) {
+	var condition = 'id=' + req.params.id;
+
+	Recipe.findAll({
+		where:{
+		vegan: req.body.vegetarian,
+		glutenFree: req.body.gluten
+	  }
+	})
+	.then (function(recipe){
+		var hbsObject = {recipe};
+		res.render('findRecipe', hbsObject);
+	})
+});
 
 // GET REQUEST TO URI - /addRecipe
 // user presented with page where she can
