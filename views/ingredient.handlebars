@@ -1,23 +1,3 @@
-<style>
-.panel-body a
-    {
-        word-break:break-all;
-    }
-.sameLine {display: inline-block;}
-button {margin-left: 10px;
-        outline: none;
-        border: none;
-        background: none;}
-.categoryUL {display: none;}
-.inlineB {display: inline-block;
-          vertical-align: top;
-          width: 300px;}
-/*.ingredients {overflow: scroll; }*/
-.ingredients {height: 35em;
-              overflow:scroll;
-              border:7px solid;
-              padding:1%; }
-</style>
 
   {{! ************* MAIN HEADING}}
   <div class="container">
@@ -60,8 +40,8 @@ button {margin-left: 10px;
                                   </br>
                                   </br>
                                   </br>
-                                 <button id="add" type="submit" class="btn btn-default" ><i class="fa fa-check-square"></i> Add Now</button>
-                                 <button type="button" class="btn btn-default" id="clearAll"><i class="fa fa-trash"></i> Clear Results</button>
+                                 <button id="add" type="submit" class="ingredient-button btn btn-default" ><i class="fa fa-check-square"></i> Add Now</button>
+                                 <button type="button" class="ingredient-button btn btn-default" id="clearAll"><i class="fa fa-trash"></i> Clear Results</button>
                         </div>
                       </form>
                   </div>
@@ -150,7 +130,7 @@ button {margin-left: 10px;
     var ingredientLI = $('<li>');
 
     ingredientLI.append('<span class="ingredientName sameLine">' + ingredientsHave[i].name + '</span>');
-    ingredientLI.append('<form class="sameLine" action="ingredient/update/' + ingredientsHave[i].id + '?_method=PUT" method="POST"><input type="hidden" name="inPantry" value="false"><button type="submit">x</button></form>');
+    ingredientLI.append('<form class="sameLine" action="ingredient/update/' + ingredientsHave[i].id + '?_method=PUT" method="POST"><input type="hidden" name="inPantry" value="false"><button class="ingredient-button btn btn-default" type="submit">x</button></form>');
 
     $('#inPantryList').find('.' + ingredientsHave[i].cleanCat).append(ingredientLI);
   }
@@ -160,7 +140,7 @@ button {margin-left: 10px;
     var ingredientLI = $('<li>');
 
     ingredientLI.append('<span class="ingredientName sameLine">' + ingredientsNotHave[i].name + '</span>');
-    ingredientLI.append('<form class="sameLine" action="ingredient/update/' + ingredientsNotHave[i].id + '?_method=PUT" method="POST"><input type="hidden" name="inPantry" value="true"><button type="submit">x</button></form>');
+    ingredientLI.append('<form class="sameLine" action="ingredient/update/' + ingredientsNotHave[i].id + '?_method=PUT" method="POST"><input type="hidden" name="inPantry" value="true"><button class="ingredient-button btn btn-default" type="submit">x</button></form>');
 
     $('#notInPantryList').find('.' + ingredientsNotHave[i].cleanCat).append(ingredientLI);
   }

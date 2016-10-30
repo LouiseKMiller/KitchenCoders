@@ -1,0 +1,31 @@
+.panel-body a {
+    word-break: break-all;
+}
+
+.sameLine {
+    display: inline-block;
+}
+
+.ingredient-button {
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+.categoryUL {
+    display: none;
+}
+
+.inlineB {
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
+}
+
+.ingredients {
+    height: 35em;
+    overflow: scroll;
+    border: 7px solid;
+    padding: 1%;
+}
