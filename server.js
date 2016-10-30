@@ -1,4 +1,3 @@
-
 // ============================================================
 // DEPENDENCIES
 // Node Package Modules
@@ -16,28 +15,21 @@ var path = require('path');
 var methodOverride = require('method-override');
 var models = require('./models');
 
-
 // PREPARE OUR TABLES in MySQL)
-/// extract our sequelize connection from the models object, to avoid confusion
+// extract our sequelize connection from the models object, to avoid confusion
 var seqConnection = models.sequelize;
-
 
 // PREPARE OUR TABLES
 // =======================================================================
-
 
 // We run this query so that we can drop our tables even though they have foreign keys
 seqConnection.query('SET FOREIGN_KEY_CHECKS = 0')
 
 // reach into our models object, and create each table based on the associated model.
 // note: force:true drops the table if it already exists
-.then(function(){
-	return seqConnection.sync()
-})
-
-
-
-
+.then(function () {
+	return seqConnection.sync();
+});
 
 // create an instance of express by running the express function
 
@@ -50,16 +42,14 @@ var app = express();
 // The process.cwd method return the current working directory of the node.js process
 app.use(express.static(process.cwd() + '/public'));
 
-
 // BodyParser makes it easy for our server to interpret data sent to it.
 
-app.use(bodyParser.json());  // middleware that only parses JSON
-app.use(bodyParser.urlencoded({extended: false})); // middleware that only parses urlencoded bodies.
-     // extended set true so parsing with qs library.  Allows for rich objects and arrays to be
-     // encoded into the URL-encoded format.
-app.use(bodyParser.text());  // middleware that parses all bodies as string
-app.use(bodyParser.json({type:'application/vnd.api+json'})); // the type option is used to determine
-
+app.use(bodyParser.json()); // middleware that only parses JSON
+app.use(bodyParser.urlencoded({ extended: false })); // middleware that only parses urlencoded bodies.
+// extended set true so parsing with qs library.  Allows for rich objects and arrays to be
+// encoded into the URL-encoded format.
+app.use(bodyParser.text()); // middleware that parses all bodies as string
+app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // the type option is used to determine
 
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
@@ -82,12 +72,12 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 // local dependency - routes = express.router for all routes
-//var html_routes = require('./routes/html_routes.js');
-var api_routes = require('./routes/api_routes.js');
+// var html_routes = require('./routes/html_routes.js');
+var apiRoutes = require('./routes/api_routes.js');
 
-//app.use('/', html_routes);
+// app.use('/', html_routes);
 
-app.use('/', api_routes);
+app.use('/', apiRoutes);
 
 var PORT = process.env.PORT || 3000;
 app.listen(PORT);
